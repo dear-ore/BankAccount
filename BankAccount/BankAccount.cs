@@ -8,10 +8,10 @@
 
         //Other implementations
         //require account number length = 10;
-        public BankAccount(string name, string accnumber, int initialBal)
+        public BankAccount(string name, string accNumber, int initialBal)
         {
             AccountHolder = name;
-            AccountNumber = accnumber;
+            AccountNumber = accNumber;
             Balance = initialBal;
         }
 
@@ -32,7 +32,8 @@
                 throw new ArgumentOutOfRangeException($"The amount - ({amount}) you're trying to withdraw is larger than your current balance({Balance}). Try again with a smaller amount!");
             }
 
-            return Balance - amount;
+            Balance -= amount;
+            return Balance;
         }
     }
 }

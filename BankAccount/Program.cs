@@ -7,4 +7,4 @@ Console.WriteLine(customer1.Balance);
 Console.WriteLine(customer1.AccountNumber);
 
 Console.WriteLine(customer1.Deposit(10000));
-//customer1.Withdraw(30000);
+Console.WriteLine(customer1.Withdraw(30000));
