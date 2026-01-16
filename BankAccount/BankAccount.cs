@@ -1,10 +1,13 @@
-﻿namespace BankAccount
-{ 
+﻿namespace BankAccounts
+{
     public class BankAccount
     {
         public string AccountNumber { get; }
-        public string AccountHolder { get; set; }
-        public int Balance { get; }
+        public string AccountHolder { get; }
+        public int Balance { get; set; }
+
+        //Other implementations
+        //require account number length = 10;
         public BankAccount(string name, string accnumber, int initialBal)
         {
             AccountHolder = name;
@@ -12,17 +15,21 @@
             Balance = initialBal;
         }
 
-        public int Deposit(int amount)
+        public int  Deposit(int amount)
         {
-            int newBalance = Balance + amount;
-            return newBalance;
+            if(amount <= 0)
+            {
+                throw new ArgumentException($"The amount you want to deposit should be greater than zero!");
+            }
+            Balance += amount;
+            return Balance;
         }
 
         public int Withdraw(int amount)
         {
             if(amount > Balance)
             {
-                throw new ArgumentOutOfRangeException($"The amount ({amount}) you're trying to withdraw is larger than your current balance. Try again with a smaller amount");
+                throw new ArgumentOutOfRangeException($"The amount - ({amount}) you're trying to withdraw is larger than your current balance({Balance}). Try again with a smaller amount!");
             }
 
             return Balance - amount;

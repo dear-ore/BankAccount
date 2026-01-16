@@ -1,6 +1,5 @@
 ﻿
-
-namespace BankAccount
+namespace BankAccounts
 {
     public class SavingsAccount
     {
