@@ -4,28 +4,28 @@
     {
         public string AccountNumber { get; }
         public string AccountHolder { get; }
-        public int Balance { get; set; }
+        public decimal Balance { get; private set; }
 
         //Other implementations
         //require account number length = 10;
-        public BankAccount(string name, string accNumber, int initialBal)
+        public BankAccount(string name, string accNumber, decimal initialBal)
         {
             AccountHolder = name;
             AccountNumber = accNumber;
             Balance = initialBal;
         }
 
-        public int  Deposit(int amount)
+        public void Deposit(decimal amount)
         {
             if(amount <= 0)
             {
                 throw new ArgumentException($"The amount you want to deposit should be greater than zero!");
             }
             Balance += amount;
-            return Balance;
+            //return Balance;
         }
 
-        public int Withdraw(int amount)
+        public void Withdraw(decimal amount)
         {
             if(amount > Balance)
             {
@@ -33,7 +33,7 @@
             }
 
             Balance -= amount;
-            return Balance;
+            //return Balance;
         }
     }
 }
