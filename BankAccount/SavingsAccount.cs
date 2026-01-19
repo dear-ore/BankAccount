@@ -3,22 +3,28 @@ namespace BankAccounts
 {
     public class SavingsAccount : BankAccount
     {
-        public int SavingsBalance { get; set; }
-        public int InterestRate { get; } = 10; //percent
-        public SavingsAccount(string name, string accNumber, int initialBal) : base(name, accNumber, initialBal)
+       // public decimal SavingsBalance { get; set; }
+        public decimal InterestRate { get; set;  }  //percent
+        public SavingsAccount(string name, string accNumber, decimal initialBal, decimal interestRate = 0.10m) : base(name, accNumber, initialBal)
         {
-            
+            InterestRate = interestRate;
         }
 
-        public int CalculateInterest()
+        public decimal CalculateInterest()
         {
-            return (InterestRate / 100) * SavingsBalance;
+            return InterestRate * Balance;
         }
 
-        public int GetSavingsAndInterest()
+        //public int GetSavingsAndInterest()
+        //{
+        //    int interest = CalculateInterest();
+        //    return interest + SavingsBalance;
+        //}
+
+        public void ApplyInterest()
         {
-            int interest = CalculateInterest();
-            return interest + SavingsBalance;
+            decimal interest = CalculateInterest();
+            Deposit(interest);
         }
     }
 }
