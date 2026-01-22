@@ -4,7 +4,7 @@
     {
         public string AccountNumber { get; }
         public string AccountHolder { get; }
-        public decimal Balance { get; private set; }
+        public decimal Balance { get; set; }
 
         //Other implementations
         //require account number length = 10;
@@ -29,7 +29,7 @@
             //return Balance;
         }
 
-        public void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount)
         {
             if(amount <= 0)
             {
