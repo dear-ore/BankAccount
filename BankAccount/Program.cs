@@ -52,10 +52,10 @@ Console.WriteLine($"Account Number - {currentCustomer.AccountNumber}");
 Console.WriteLine($"Account Balance - {currentCustomer.Balance}");
 Console.WriteLine($"Overdraft Limit - {currentCustomer.OverdraftLimit}");
 
-currentCustomer.Withdraw(7000);
+currentCustomer.Withdraw(2000);
 
 Console.WriteLine($"Account Balance after withdrawal - {currentCustomer.Balance}");
-Console.WriteLine($"Total Limit after withdrawal - {currentCustomer.TotalLimit}");
+//Console.WriteLine($"Total Limit after withdrawal - {currentCustomer.TotalLimit}");
 Console.WriteLine($"Overdraft Limit after withdrawal - {currentCustomer.OverdraftLimit}");
 
 

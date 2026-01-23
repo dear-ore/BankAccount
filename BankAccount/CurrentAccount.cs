@@ -2,10 +2,9 @@
 {
     public class CurrentAccount : BankAccount
     {
-        public decimal OverdraftLimit { get; set; }
+        public decimal OverdraftLimit { get; private set; }
 
-        public decimal TotalLimit { get; set; }
-
+        //public decimal TotalLimit { get; private set; }
 
         public CurrentAccount(string name, string accNumber, decimal initialBal, decimal overdraftBal = 5000m) : base(name, accNumber, initialBal)
         {
@@ -14,23 +13,29 @@
 
         public override void Withdraw(decimal amount)
         {
-            TotalLimit = Balance + OverdraftLimit;
+            decimal totalLimit = Balance + OverdraftLimit;
          
             if (amount <= 0)
             {
                 throw new ArgumentException("Withdrawal amount must be greater than zero");
             }
-            if (amount > TotalLimit)
+
+            if (amount > totalLimit)
             {
-                throw new InvalidOperationException($"Insufficient funds. Balance: {TotalLimit:C}, Withdrawal: {amount:C}");
+                throw new InvalidOperationException($"Insufficient funds. Balance: {totalLimit:C}, Withdrawal: {amount:C}");
             }
 
             if (amount >= Balance)
             {
-                Balance -= amount;
+                decimal remainder = amount - Balance;
+                OverdraftLimit -= remainder;
+                Balance = 0;
             }
 
-            TotalLimit -= amount;
+            if (amount < Balance)
+            {
+                Balance -= amount;
+            }
         }
 
         public decimal CheckOverdraftLimit()
@@ -41,6 +46,6 @@
 }
 // Should inherit from BankAccount - done
 // Add an OverdraftLimit property (e.g., 5000m) -done
-// Override the Withdraw method to allow going negative up to the overdraft limit
+// Override the Withdraw method to allow going negative up to the overdraft limit - done
 // Example: Balance is ₦2,000, OverdraftLimit is ₦5,000
 // Should be able to withdraw up to ₦7,000 total
