@@ -1,11 +1,16 @@
 ﻿using BankAccounts;
 
-//Console.WriteLine("=======Testing Bank Account OOP=============");
+Console.WriteLine("=======Testing Bank Account Search=============");
 
-//BankAccount newCustomer = new BankAccount("Tina Turner", "1234567890", 30000m);
-//Console.WriteLine($"Account Holder - {newCustomer.AccountHolder}");
-//Console.WriteLine($"Account Number - {newCustomer.AccountNumber}");
-//Console.WriteLine($"Account Balance - {newCustomer.Balance}");
+BankAccount newCustomer = new BankAccount("Tina Turner", "1234567890", 30000m);
+BankAccount newCustomer1 = new BankAccount("Wale Turner", "1234567891", 30000m);
+
+Bank myBank = new Bank();
+myBank.AddAccount(newCustomer);
+myBank.AddAccount(newCustomer1);
+
+myBank.FindAccount("1234567890");
+myBank.FindAccount("1234567891");
 
 
 //Console.WriteLine("=================TESTING BANK ACCOUNT METHODS===================");
@@ -44,19 +49,19 @@
 
 //Console.WriteLine("=====================TESTING EXCEPTION HANDLING============================================");
 
-Console.WriteLine("=================TESTING CURRENT ACCOUNT==================");
+//Console.WriteLine("=================TESTING CURRENT ACCOUNT==================");
 
-CurrentAccount currentCustomer = new CurrentAccount("Tope Yepa", "1234567890", 2000);
-Console.WriteLine($"Account Holder - {currentCustomer.AccountHolder}");
-Console.WriteLine($"Account Number - {currentCustomer.AccountNumber}");
-Console.WriteLine($"Account Balance - {currentCustomer.Balance}");
-Console.WriteLine($"Overdraft Limit - {currentCustomer.OverdraftLimit}");
+//CurrentAccount currentCustomer = new CurrentAccount("Tope Yepa", "1234567890", 2000);
+//Console.WriteLine($"Account Holder - {currentCustomer.AccountHolder}");
+//Console.WriteLine($"Account Number - {currentCustomer.AccountNumber}");
+//Console.WriteLine($"Account Balance - {currentCustomer.Balance}");
+//Console.WriteLine($"Overdraft Limit - {currentCustomer.OverdraftLimit}");
 
-currentCustomer.Withdraw(2000);
+//currentCustomer.Withdraw(2000);
 
-Console.WriteLine($"Account Balance after withdrawal - {currentCustomer.Balance}");
-//Console.WriteLine($"Total Limit after withdrawal - {currentCustomer.TotalLimit}");
-Console.WriteLine($"Overdraft Limit after withdrawal - {currentCustomer.OverdraftLimit}");
+//Console.WriteLine($"Account Balance after withdrawal - {currentCustomer.Balance}");
+////Console.WriteLine($"Total Limit after withdrawal - {currentCustomer.TotalLimit}");
+//Console.WriteLine($"Overdraft Limit after withdrawal - {currentCustomer.OverdraftLimit}");
 
 
 
