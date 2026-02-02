@@ -4,7 +4,7 @@
     {
         public string AccountNumber { get; }
         public string AccountHolder { get; }
-        public decimal Balance { get; set; }
+        public decimal Balance { get; protected set; }
 
         //Other implementations
         //require account number length = 10;

@@ -1,8 +1,10 @@
-﻿namespace BankAccounts
+﻿using System.Dynamic;
+
+namespace BankAccounts
 {
     public class CurrentAccount : BankAccount
     {
-        public decimal OverdraftLimit { get; private set; }
+        public decimal OverdraftLimit { get; }
 
         //public decimal TotalLimit { get; private set; }
 
@@ -13,34 +15,29 @@
 
         public override void Withdraw(decimal amount)
         {
-            decimal totalLimit = Balance + OverdraftLimit;
-         
             if (amount <= 0)
             {
                 throw new ArgumentException("Withdrawal amount must be greater than zero");
             }
+
+            decimal totalLimit = Balance + OverdraftLimit;
 
             if (amount > totalLimit)
             {
                 throw new InvalidOperationException($"Insufficient funds. Balance: {totalLimit:C}, Withdrawal: {amount:C}");
             }
 
-            if (amount >= Balance)
-            {
-                decimal remainder = amount - Balance;
-                OverdraftLimit -= remainder;
-                Balance = 0;
-            }
-
-            if (amount < Balance)
-            {
-                Balance -= amount;
-            }
+            Balance -= amount;
         }
 
-        public decimal CheckOverdraftLimit()
+        public decimal GetUsedOverdraft()
         {
-            return -OverdraftLimit;
+            return Balance < 0 ? Math.Abs(Balance) : 0;
+        }
+
+        public decimal GetAvailableOverdraft()
+        {
+            return Balance < 0 ? OverdraftLimit - Math.Abs(Balance) : OverdraftLimit;
         }
     }
 }
