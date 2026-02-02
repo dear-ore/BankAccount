@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace BankAccounts
+﻿namespace BankAccounts
 {
     public class CurrentAccount : BankAccount
     {
@@ -41,8 +39,3 @@ namespace BankAccounts
         }
     }
 }
-// Should inherit from BankAccount - done
-// Add an OverdraftLimit property (e.g., 5000m) -done
-// Override the Withdraw method to allow going negative up to the overdraft limit - done
-// Example: Balance is ₦2,000, OverdraftLimit is ₦5,000
-// Should be able to withdraw up to ₦7,000 total

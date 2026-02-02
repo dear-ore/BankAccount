@@ -2,7 +2,7 @@
 {
     public class Bank
     {
-        public List<BankAccount> Accounts {get; set;}
+        private List<BankAccount> Accounts {get; set;}
         public Bank()
         {
             Accounts = new List<BankAccount>();
@@ -16,23 +16,12 @@
 
         public BankAccount? FindAccount(string accountNumber)
         {
-            var foundAccount = Accounts
-                .FirstOrDefault(a => a.AccountNumber == accountNumber);
-            if (foundAccount != null)
-            {
-                Console.WriteLine($"Found an account with account number {accountNumber}!");
-                Console.WriteLine($"{foundAccount.AccountHolder}, {foundAccount.AccountNumber}");
-                return foundAccount;
-            }
-            return null;
+            return Accounts.FirstOrDefault(a => a.AccountNumber == accountNumber);
         }
 
         public decimal GetTotalDeposits()
         {
-            var depositQuery = 
-                from account in Accounts
-                select account.Balance;
-            return depositQuery.Sum();
+            return Accounts.Sum(a => a.Balance);
         }
 
         public List<T> GetAccountByTypes<T>() where T : BankAccount
@@ -40,33 +29,6 @@
             return Accounts.OfType<T>().ToList();
         }
         
-
-        //public BankAccount FindAccount(string accountNumber)
-        //{
-        //    IEnumerable<BankAccount> accountQuery =
-        //        from account in Accounts
-        //        where account.AccountNumber == accountNumber
-        //        select account;
-
-        //    foreach (BankAccount account in accountQuery)
-        //    {
-        //        return account;
-        //    }
-
-
-        //}
     }
 }
 
-// Manages multiple accounts
-// List<BankAccount> Accounts property
-// Methods:
-//   - AddAccount(BankAccount account) - 
-//  -  FindAccount(string accountNumber) - use LINQ ✅☑️✔️
-//   - GetTotalDeposits() - sum all balances using LINQ ✅☑️✔️
-//   - GetAccountsByType<T>() where T : BankAccount - use LINQ with OfType<T>() ✅☑️✔️
-
-//Store all accounts - Keep a list of all customer accounts (savings, current, regular)
-//Add new accounts - When a new customer opens an account, add it to the bank
-//Find specific accounts - When a customer comes in with their account number, find their account
-//Generate reports - Like "what's the total money in our bank?" or "how many savings accounts do we have?"
