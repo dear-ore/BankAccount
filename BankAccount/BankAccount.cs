@@ -17,6 +17,7 @@
             AccountHolder = name;
             AccountNumber = accNumber;
             Balance = initialBal;
+            //Bank.AddAccount();
         }
 
         public void Deposit(decimal amount)

@@ -14,20 +14,32 @@
             Console.WriteLine($"Account {account.AccountNumber} was added successfully!");
         }
 
-        public BankAccount FindAccount(string accountNumber)
+        public BankAccount? FindAccount(string accountNumber)
         {
-            BankAccount foundAccount = Accounts
+            var foundAccount = Accounts
                 .FirstOrDefault(a => a.AccountNumber == accountNumber);
             if (foundAccount != null)
             {
-                Console.WriteLine($"{foundAccount.AccountHolder}, {foundAccount.AccountNumber}b");
+                Console.WriteLine($"Found an account with account number {accountNumber}!");
+                Console.WriteLine($"{foundAccount.AccountHolder}, {foundAccount.AccountNumber}");
                 return foundAccount;
             }
-            else
-            {
-                return default;
-            }
+            return null;
         }
+
+        public decimal GetTotalDeposits()
+        {
+            var depositQuery = 
+                from account in Accounts
+                select account.Balance;
+            return depositQuery.Sum();
+        }
+
+        public List<T> GetAccountByTypes<T>() where T : BankAccount
+        {
+            return Accounts.OfType<T>().ToList();
+        }
+        
 
         //public BankAccount FindAccount(string accountNumber)
         //{
@@ -50,9 +62,9 @@
 // List<BankAccount> Accounts property
 // Methods:
 //   - AddAccount(BankAccount account) - 
-//   - FindAccount(string accountNumber) - use LINQ
-//   - GetTotalDeposits() - sum all balances using LINQ
-//   - GetAccountsByType<T>() where T : BankAccount - use LINQ with OfType<T>()
+//  -  FindAccount(string accountNumber) - use LINQ ✅☑️✔️
+//   - GetTotalDeposits() - sum all balances using LINQ ✅☑️✔️
+//   - GetAccountsByType<T>() where T : BankAccount - use LINQ with OfType<T>() ✅☑️✔️
 
 //Store all accounts - Keep a list of all customer accounts (savings, current, regular)
 //Add new accounts - When a new customer opens an account, add it to the bank

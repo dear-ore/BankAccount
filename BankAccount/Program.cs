@@ -2,16 +2,28 @@
 
 Console.WriteLine("=======Testing Bank Account Search=============");
 
-BankAccount newCustomer = new BankAccount("Tina Turner", "1234567890", 30000m);
-BankAccount newCustomer1 = new BankAccount("Wale Turner", "1234567891", 30000m);
+BankAccount regularCustomer = new BankAccount("Tina Turner", "1234567890", 3000m);
+BankAccount savingsCustomer1 = new SavingsAccount("Wale Turner", "1234567891", 5000m);
+BankAccount currentCustomer2 = new CurrentAccount("Tina Turner", "1234567892", 2000m);
+BankAccount regularCustomer3 = new BankAccount("Wale Turner", "1234567893", 7000m);
+BankAccount savingsCustomer4 = new SavingsAccount("Tina Turner", "1234567894", 20000m);
+BankAccount currentCustomer5 = new CurrentAccount("Wale Turner", "1234567895", 15000m);
 
 Bank myBank = new Bank();
-myBank.AddAccount(newCustomer);
-myBank.AddAccount(newCustomer1);
+myBank.AddAccount(regularCustomer);
+myBank.AddAccount(savingsCustomer1);
+myBank.AddAccount(currentCustomer2);
+myBank.AddAccount(regularCustomer3);
+myBank.AddAccount(savingsCustomer4);
+myBank.AddAccount(currentCustomer5);
 
-myBank.FindAccount("1234567890");
-myBank.FindAccount("1234567891");
+//myBank.FindAccount("1234567890");
+//myBank.FindAccount("1234567891");
 
+//Console.WriteLine($"Total Balance is {myBank.GetTotalDeposits()}");
+var savingAccountCount = myBank.GetAccountByTypes<SavingsAccount>();
+
+Console.WriteLine($"Present Savings Account: {savingAccountCount.Count()}");
 
 //Console.WriteLine("=================TESTING BANK ACCOUNT METHODS===================");
 //newCustomer.Deposit(20000m);
